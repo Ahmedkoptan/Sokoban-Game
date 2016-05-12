@@ -19,6 +19,8 @@ class Quit_Window
 private:
     Sprite QuitWindowImage;
     Texture QuitWindow_Texture;
+    Text Quit;
+    Font Quitfont;
 public:
     Quit_Window();
     void setbuttons();

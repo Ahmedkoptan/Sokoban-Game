@@ -39,12 +39,22 @@ private:
     Texture Mark_Texture;
     int pi;
     int pj;
+    Text movement_counter;
+    Font movementcounterfont;
+    Text myclock;
+    Font myclockfont;
+    Text Moves;
+    Font Movesfont;
+    Text Timee;
+    Font Timeefont;
 public:
     Buttons Restart;
     Buttons Pause;
     Buttons GoBack;
+    Buttons Forward_Level;
+    Buttons Back_Level;
     Play_Window();
-    void setbuttons();
+    void setbuttons(int l, int x);
     void draw(RenderWindow& window);
     void settexture();
     void setlevel(int l);
@@ -55,10 +65,11 @@ public:
     void draw_grass(RenderWindow& window, int i, int j);
     void draw_box(RenderWindow& window, int i, int j);
     void draw_mark(RenderWindow& window, int i, int j);
-    void moveplayer(int di, int dj);
+    bool moveplayer(int di, int dj);
     void findplayer();
     bool checknotwin();
-    
+    void countmove(int l);
+    void displayclock(int x);
 };
 
 #endif /* Play_Window_hpp */

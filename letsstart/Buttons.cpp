@@ -41,12 +41,16 @@ void Buttons::seteverything(float posi, float posj, float sizei, float sizej, Co
         ButtonImage.setOrigin(ButtonImage.getLocalBounds().width/2, ButtonImage.getLocalBounds().height/2);
         ButtonImage.setPosition(Pj, Pi);
     }
+    mybutton.setOutlineThickness(10);
+    mybutton.setOutlineColor(Color::Black);
     
 }
-bool Buttons::detector()
+bool Buttons::detector(Event::MouseButtonEvent mousebutton)
 {
-    Event rollover;
-    if((rollover.mouseMove.x<=(Pj+(Sj/2)))&&(rollover.mouseMove.x>=(Pj-(Sj/2)))&&(rollover.mouseMove.y<=(Pi+(Si/2)))&&(rollover.mouseMove.y>=(Pi-(Si/2))))
+    float x = mousebutton.x;
+    float y = mousebutton.y;
+    
+    if((x<=(Pj+(Sj/2)))&&(x>=(Pj-(Sj/2)))&&(y<=(Pi+(Si/2)))&&(y>=(Pi-(Si/2))))
     {
         return true;
     }
@@ -58,7 +62,6 @@ void Buttons::drawbutton(RenderWindow& window)
     window.draw(mybutton);
     window.draw(ButtonImage);
     window.draw(mytext);
-    
 }
 
 

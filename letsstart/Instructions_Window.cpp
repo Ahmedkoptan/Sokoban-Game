@@ -15,17 +15,17 @@ Instructions_Window::Instructions_Window()
 }
 void Instructions_Window::setbuttons()
 {
-    Back.seteverything(800, 500, 100, 200, Color::White, "Back","");
+    Back.seteverything(800, 150, 100, 200, Color::White, "Back","");
 }
 void Instructions_Window::settexture()
 {
-    if (!Instructions_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/BackgroundSkyFinalLook.jpg")) {
+    if (!Instructions_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Instructions_Image.png")) {
         return EXIT_FAILURE;
     }
     InstructionsWindowImage.setTexture(Instructions_Texture);
-    InstructionsWindowImage.setScale(Vector2f (1.05f,1.6f));
+    InstructionsWindowImage.setScale(Vector2f (1.f,1.f));
     InstructionsWindowImage.setOrigin(InstructionsWindowImage.getLocalBounds().width/2, InstructionsWindowImage.getLocalBounds().height/2);
-    InstructionsWindowImage.setPosition(500, 500);
+    InstructionsWindowImage.setPosition(1150, 750);
 }
 void Instructions_Window::draw(RenderWindow& window)
 {

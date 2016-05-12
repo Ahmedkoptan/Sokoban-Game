@@ -15,8 +15,17 @@ Quit_Window::Quit_Window()
 }
 void Quit_Window::setbuttons()
 {
-    Exit.seteverything(500, 300, 100, 200, Color::White, "Exit","");
-    Cancel.seteverything(500, 700, 100, 200, Color::White, "Cancel","");
+    Exit.seteverything((1800/2)+100, (2880/2)-200, 100, 200, Color::White, "Yes","");
+    Cancel.seteverything((1800/2)+100, (2880/2)+200, 100, 200, Color::White, "No","");
+    if (!Quitfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
+        return EXIT_FAILURE;
+    }
+    Quit.setString("Are you sure you want to quit?");
+    Quit.setFont(Quitfont);
+    Quit.setCharacterSize((0.3*200));
+    Quit.setOrigin(Quit.getLocalBounds().width / 2, Quit.getLocalBounds().height / 2);
+    Quit.setPosition(2880/2,(1800/2)-100);
+    Quit.setColor(sf::Color::White);
 }
 void Quit_Window::settexture()
 {
@@ -24,13 +33,14 @@ void Quit_Window::settexture()
         return EXIT_FAILURE;
     }
     QuitWindowImage.setTexture(QuitWindow_Texture);
-    QuitWindowImage.setScale(Vector2f (1.05f,1.6f));
+    QuitWindowImage.setScale(Vector2f (3.f,2.85f));
     QuitWindowImage.setOrigin(QuitWindowImage.getLocalBounds().width/2, QuitWindowImage.getLocalBounds().height/2);
-    QuitWindowImage.setPosition(500, 500);
+    QuitWindowImage.setPosition(2880/2, 1800/2);
 }
 void Quit_Window::draw(RenderWindow& window)
 {
     window.draw(QuitWindowImage);
     Exit.drawbutton(window);
     Cancel.drawbutton(window);
+    window.draw(Quit);
 }

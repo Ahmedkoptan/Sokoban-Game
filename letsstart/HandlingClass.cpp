@@ -16,31 +16,54 @@
 #include <string>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-void setfalse ( bool&, bool&, bool&);
+#include "Pause_Window.hpp"
+#include "Win_window.hpp"
+#include "Lose_window.hpp"
+#include <iostream>
+const int maximum_moves=100,maximum_time=120;
 
+void setfalse ( bool&, bool&, bool&, bool&, bool&, bool&);
+int calc_score(int timeleft, int movesleft);
 
 HandlingClass::HandlingClass()
 {
     currentlevel=1;
+    movementcounter=0;
+    score=0;
 }
 void HandlingClass::Start()
 {
-    const int XwindowSize=2300, YwindowSize=1500;
-    sf::RenderWindow game_window(sf::VideoMode(XwindowSize, YwindowSize), "SFML Window");
+    const int XwindowSize=2880, YwindowSize=1800;
+    int mytime;
+    sf::RenderWindow game_window(sf::VideoMode(), "SFML Window", Style::Fullscreen);
     Main_Window main_window;
     Play_Window play_window;
     Instructions_Window instructions_window;
     Quit_Window quit_window;
+    Pause_Window pause_window;
+    Win_window win_window;
+    Lose_window lose_window;
     main_window.setbuttons(currentlevel);
     main_window.settexture();
     play_window.settexture();
-    play_window.setbuttons();
-    play_window.setlevel(currentlevel);
+    clk.restart();
+    mytime=clk.getElapsedTime().asSeconds();
+    play_window.setbuttons(movementcounter, mytime);
     instructions_window.setbuttons();
     instructions_window.settexture();
     quit_window.settexture();
     quit_window.setbuttons();
-    bool mw=true,p,i,q;
+    pause_window.setbuttons();
+    pause_window.settexture();
+    win_window.settexture();
+    win_window.setbuttons(movementcounter,score);
+    lose_window.settexture();
+    lose_window.setbuttons(movementcounter);
+    bool mw=true,p,i,q,ps,w,l;
+    Music music;
+    music.openFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/23 After The Fall.wav");
+    music.play();
+    music.setLoop(true);
     while (game_window.isOpen())
     {
         // Process events
@@ -56,53 +79,229 @@ void HandlingClass::Start()
                 }
                 case Event::MouseButtonPressed:
                 {
+                    if(w)
+                    {
+                        if(win_window.Restarttt.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            p=true;
+                            movementcounter=0;
+                            play_window.setlevel(currentlevel);
+                            play_window.countmove(0);
+                            w=false;
+                            clk.restart();
+                            mytime=0;
+                            play_window.displayclock(mytime);
+                            break;
+                        }
+                        if(win_window.MainWindow.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            mw=true;
+                            w=false;
+                            break;
+                        }
+                    }
+                    if(l)
+                    {
+                        if(lose_window.Restartttt.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            p=true;
+                            movementcounter=0;
+                            play_window.setlevel(currentlevel);
+                            play_window.countmove(0);
+                            l=false;
+                            clk.restart();
+                            mytime=0;
+                            play_window.displayclock(mytime);
+                            break;
+                        }
+                        if(lose_window.MainWindoww.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            mw=true;
+                            l=false;
+                            break;
+                        }
+                    }
                     if(mw)
                     {
                         //play button pressed
-                        if(main_window.Play.detector() && event.mouseButton.button==Mouse::Left)
+                        if(main_window.Play.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
                         {
+                            movementcounter=0;
+                            mytime=0;
+                            play_window.countmove(movementcounter);
                             play_window.setlevel(currentlevel);
                             p=true;
                             mw=false;
+                            clk.restart();
+                            break;
                         }
-                        //play button highlighted
                         
                         //lower level button pressed
-                        if(main_window.Lowerlevel.detector() && event.mouseButton.button==Mouse::Left)
+                        if(main_window.Lowerlevel.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
                         {
-                            if(currentlevel>1 && currentlevel<6)
+                            if(currentlevel>1 && currentlevel<7)
                             {
                                 currentlevel--;
+                                main_window.changelevel(currentlevel);
+                                break;
                             }
                         }
-                        //lower level button highkighted
-                        
                         //higher level button pressed
-                        if(main_window.Higherlevel.detector() && event.mouseButton.button==Mouse::Left)
+                        if(main_window.Higherlevel.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
                         {
-                            if(currentlevel>0 && currentlevel<5)
+                            if(currentlevel>0 && currentlevel<6)
                             {
                                 currentlevel++;
+                                main_window.changelevel(currentlevel);
+                                break;
                             }
                         }
-                        //higher level button highlighted
-                        
                         //instructions button pressed
-                        if(main_window.Instructions.detector() && event.mouseButton.button==Mouse::Left)
+                        if(main_window.Instructions.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
                         {
                             i=true;
                             mw=false;
+                            break;
                         }
-                        //instruction button highlighted
-                        
                         //quit button pressed
-                        if(main_window.Quit.detector() && event.mouseButton.button==Mouse::Left)
+                        if(main_window.Quit.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
                         {
                             q=true;
                             mw=false;
+                            break;
                         }
+                    }
+                    if(p)
+                    {
+                        if(play_window.Restart.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            play_window.setlevel(currentlevel);
+                            break;
+                        }
+                        if(play_window.GoBack.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            mw=true;
+                            p=false;
+                            break;
+                        }
+                        if(play_window.Pause.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            ps=true;
+                            p=false;
+                            break;
+                        }
+                    }
+                    if(q)
+                    {
+                        if(quit_window.Cancel.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            mw=true;
+                            q=false;
+                            break;
+                        }
+                        if(quit_window.Exit.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            game_window.close();
+                            break;
+                        }
+                    }
+                    if(i)
+                    {
+                        if(instructions_window.Back.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            mw=true;
+                            i=false;
+                            break;
+                        }
+                    }
+                    if(ps)
+                    {
+                        if(pause_window.EXITT.detector(event.mouseButton) && event.mouseButton.button== Mouse::Left)
+                        {
+                            game_window.close();
+                            break;
+                        }
+                        if(pause_window.CANCELL.detector(event.mouseButton) && event.mouseButton.button==Mouse::Left)
+                        {
+                            p=true;
+                            ps=false;
+                            break;
+                        }
+                    }
+                }
+                case Event::KeyPressed:
+                {
+                    if(mw)
+                    {
+                        if(event.key.code==Keyboard::Escape)
+                        {
+                            q=true;
+                            mw=false;
+                            break;
+                        }
+                        //enter button pressed
+                        //play button highlighted
+                        //lower level button highkighted
+                        //higher level button highlighted
+                        //instruction button highlighted
                         //quit button highlighted
-                        
+                    }
+                    if(p)
+                    {
+                        if(play_window.checknotwin())
+                        {
+                            if(event.key.code==Keyboard::Left)
+                            {
+                                if(play_window.moveplayer(0, -1))
+                                {
+                                    movementcounter++;
+                                    play_window.countmove(movementcounter);
+                                    break;
+                                }
+                            }
+                            if(event.key.code==Keyboard::Right)
+                            {
+                                if(play_window.moveplayer(0, 1))
+                                {
+                                    movementcounter++;
+                                    play_window.countmove(movementcounter);
+                                    break;
+                                }
+                            }
+                            if(event.key.code==Keyboard::Down)
+                            {
+                                if(play_window.moveplayer(1, 0))
+                                {
+                                    movementcounter++;
+                                    play_window.countmove(movementcounter);
+                                    break;
+                                }
+                            }
+                            if(event.key.code==Keyboard::Up)
+                            {
+                                if(play_window.moveplayer(-1, 0))
+                                {
+                                    movementcounter++;
+                                    play_window.countmove(movementcounter);
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if(!play_window.checknotwin())
+                            {
+                                w=true;
+                                p=false;
+                                break;
+                            }
+                        }
+                        if(event.key.code==Keyboard::Escape)
+                        {
+                            q=true;
+                            p=false;
+                            break;
+                        }
                     }
                     if(q)
                     {
@@ -111,103 +310,106 @@ void HandlingClass::Start()
                             game_window.close();
                             break;
                         }
-                        //exit button pressed
-                        //cancel button pressed
-                    }
-                    if(p)
-                    {
-                        if(play_window.checknotwin())
-                        {
-                            if(event.key.code==Keyboard::Left)
-                            {
-                                play_window.moveplayer(0, -1);
-                                break;
-                            }
-                            if(event.key.code==Keyboard::Right)
-                            {
-                                play_window.moveplayer(0, 1);
-                                break;
-                            }
-                            if(event.key.code==Keyboard::Down)
-                            {
-                                play_window.moveplayer(1, 0);
-                                break;
-                            }
-                            if(event.key.code==Keyboard::Up)
-                            {
-                                play_window.moveplayer(-1, 0);
-                                break;
-                            }
-                            if(event.key.code==Keyboard::Escape)
-                            {
-                                q=true;
-                                p=false;
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            //display win
-                        }
-                    }
-                    if(i)
-                    {
-                        //back button pressed
                     }
                 }
             }
-            
         }
+        if(!play_window.checknotwin() && p)
+        {
+            w=true;
+            p=false;
+            win_window.displaymoves(movementcounter);
+            score=calc_score(maximum_time-mytime, maximum_moves-movementcounter);
+            win_window.displayscore(score);
+            mytime=0;
+            play_window.displayclock(mytime);
+        }
+        if(p && (mytime>=maximum_time || movementcounter>=maximum_moves))
+        {
+            l=true;
+            p=false;
+            lose_window.displaymoves(movementcounter);
+            clk.restart();
+            mytime=0;
+            play_window.displayclock(mytime);
+        }
+        if(p && clk.getElapsedTime().asSeconds()>=mytime+1)
+           {
+               mytime=clk.getElapsedTime().asSeconds();
+               play_window.displayclock(mytime);
+           }
         // Clear screen
         game_window.clear(Color::White);
         if(mw)
         {
-            setfalse(p,i,q);
+            setfalse(p,i,q, ps,w,l);
             main_window.draw(game_window);
         }
         else
         {
             if(p)
             {
-                setfalse(mw,i,q);
+                setfalse(mw,i,q, ps,w,l);
                 play_window.draw(game_window);
             }
             else
             {
                 if(i)
                 {
-                    setfalse(mw, p, q);
+                    setfalse(mw, p, q, ps,w,l);
                     instructions_window.draw(game_window);
                 }
                 else
                 {
                     if(q)
                     {
-                        setfalse(mw, p, i);
+                        setfalse(mw, p, i, ps, w,l);
                         quit_window.draw(game_window);
+                    }
+                    else
+                    {
+                        if(ps)
+                        {
+                            setfalse(mw, p, i, q, w,l);
+                            pause_window.draw(game_window);
+                        }
+                        else
+                        {
+                            if(w)
+                            {
+                                setfalse(mw, p, i, q, ps,l);
+                                win_window.draw(game_window);
+                            }
+                            else
+                            {
+                                if(l)
+                                {
+                                    setfalse(mw, p, i, q, ps,w);
+                                    lose_window.draw(game_window);
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
         // Update the window
         game_window.display();
-        
     }
 
 }
-
-void setfalse (bool& a, bool& b, bool& c)
+void setfalse (bool& a, bool& b, bool& c, bool& d, bool& e, bool& f)
 {
-    a=b=c=false;
+    a=b=c=d=e=f=false;
+}
+int calc_score(int timeleft, int movesleft)
+{
+    int points=0;
+    points=timeleft*movesleft*100;
+    return points;
 }
 
 
-/*
- 
- 
- 
- Play_Menu.draw(main_window);
- 
- 
- 
-*/
+
+
+

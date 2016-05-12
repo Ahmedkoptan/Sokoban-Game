@@ -15,11 +15,11 @@ Main_Window::Main_Window()
 }
 void Main_Window::setbuttons(int l)
 {
-    Play.seteverything(200, 850, 100, 200, Color::Blue, "Play","BRICK__.jpg");
-    Instructions.seteverything(400, 850, 100, 200, Color::Blue, "Instructions","BRICK__.jpg");
-    Quit.seteverything(600, 850, 100, 200, Color::Blue, "Quit","BRICK__.jpg");
-    Lowerlevel.seteverything(800, 700, 100, 200, Color::Blue, "", "BRICK__.jpg");
-    Higherlevel.seteverything(800, 1000, 100, 200, Color::Blue, "", "BRICK__.jpg");
+    Play.seteverything(400, 2800/2, 100, 200, Color::White, "Play","");
+    Instructions.seteverything(600, 2800/2, 100, 200, Color::White, "Instructions","");
+    Quit.seteverything(800, 2800/2, 100, 200, Color::White, "Quit","");
+    Lowerlevel.seteverything(1400, (2800/2)-200, 100, 200, Color::White, "", "arrow 2.png");
+    Higherlevel.seteverything(1400, (2800/2)+200, 100, 200, Color::White, "", "arrow.png");
     if (!displaylevelfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
         return EXIT_FAILURE;
     }
@@ -27,8 +27,17 @@ void Main_Window::setbuttons(int l)
     displaylevel.setFont(displaylevelfont);
     displaylevel.setCharacterSize((0.17*200));
     displaylevel.setOrigin(displaylevel.getLocalBounds().width / 2, displaylevel.getLocalBounds().height / 2);
-    displaylevel.setPosition(850,800-8);
-    displaylevel.setColor(sf::Color::Black);
+    displaylevel.setPosition(2800/2,1400-8);
+    displaylevel.setColor(sf::Color::White);
+    if (!Levelfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
+        return EXIT_FAILURE;
+    }
+    Level.setString("Level");
+    Level.setFont(Levelfont);
+    Level.setCharacterSize((0.3*200));
+    Level.setOrigin(Level.getLocalBounds().width / 2, Level.getLocalBounds().height / 2);
+    Level.setPosition(2800/2,1200-8);
+    Level.setColor(sf::Color::White);
 }
 void Main_Window::changelevel(int l)
 {
@@ -36,21 +45,23 @@ void Main_Window::changelevel(int l)
 }
 void Main_Window::settexture()
 {
-    if (!MainWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/BackgroundSkyFinalLook.jpg")) {
+    if (!MainWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/ss-009.jpg")) {
         return EXIT_FAILURE;
     }
     MainWindowImage.setTexture(MainWindow_Texture);
-    MainWindowImage.setScale(Vector2f (1.05f,1.6f));
+    MainWindowImage.setScale(Vector2f (1.5f,1.7f));
     MainWindowImage.setOrigin(MainWindowImage.getLocalBounds().width/2, MainWindowImage.getLocalBounds().height/2);
-    MainWindowImage.setPosition(500, 500);
+    MainWindowImage.setPosition(2880/2, 1800/2);
 }
 void Main_Window::draw(RenderWindow& window)
 {
     window.draw(MainWindowImage);
-    window.draw(displaylevel);
     Play.drawbutton(window);
     Instructions.drawbutton(window);
     Quit.drawbutton(window);
     Lowerlevel.drawbutton(window);
     Higherlevel.drawbutton(window);
+    window.draw(displaylevel);
+    window.draw(Level);
+    
 }

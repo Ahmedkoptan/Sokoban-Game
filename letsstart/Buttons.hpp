@@ -29,7 +29,7 @@ private:
 public:
     Buttons();
     void seteverything( float posi, float posj, float sizei, float sizej, Color c, std::string text, std::string imagename);
-    bool detector();
+    bool detector(Event::MouseButtonEvent mousebutton);
     //void setcolor&musicchange
     void drawbutton(RenderWindow& window);
 };

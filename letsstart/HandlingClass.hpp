@@ -22,8 +22,9 @@ class HandlingClass
 {
 private:
     int currentlevel;
-    
-    
+    int movementcounter;
+    Clock clk;
+    int score;
 public:
     HandlingClass();
     void Start();

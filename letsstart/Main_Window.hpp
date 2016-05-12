@@ -21,6 +21,8 @@ private:
     Texture MainWindow_Texture;
     Text displaylevel;
     Font displaylevelfont;
+    Text Level;
+    Font Levelfont;
 public:
     Buttons Play;
     Buttons Instructions;
@@ -28,7 +30,7 @@ public:
     Buttons Lowerlevel;
     Buttons Higherlevel;
     Main_Window();
-    void setbuttons(int );
+    void setbuttons(int l);
     void settexture();
     void changelevel(int l);
     //setmusic

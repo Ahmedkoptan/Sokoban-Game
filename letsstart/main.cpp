@@ -28,7 +28,6 @@
 #include "HandlingClass.hpp"
 #include <string>
 using namespace sf;
-
 int main(int, char const**)
 {
     HandlingClass Game;
