@@ -19,6 +19,8 @@ class Pause_Window
 private:
     Sprite QuitWindowImage;
     Texture QuitWindow_Texture;
+    Text Pausee;
+    Font Pauseefont;
 public:
     Pause_Window();
     void setbuttons();

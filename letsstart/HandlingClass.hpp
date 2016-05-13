@@ -25,6 +25,7 @@ private:
     int movementcounter;
     Clock clk;
     int score;
+    Clock pausedclk;
 public:
     HandlingClass();
     void Start();

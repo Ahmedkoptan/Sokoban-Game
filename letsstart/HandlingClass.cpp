@@ -34,7 +34,7 @@ HandlingClass::HandlingClass()
 void HandlingClass::Start()
 {
     const int XwindowSize=2880, YwindowSize=1800;
-    int mytime;
+    int mytime, pausedclock=0;
     sf::RenderWindow game_window(sf::VideoMode(), "SFML Window", Style::Fullscreen);
     Main_Window main_window;
     Play_Window play_window;
@@ -133,6 +133,8 @@ void HandlingClass::Start()
                             p=true;
                             mw=false;
                             clk.restart();
+                            pausedclock=0;
+                            play_window.displayclock(mytime);
                             break;
                         }
                         
@@ -188,6 +190,7 @@ void HandlingClass::Start()
                         {
                             ps=true;
                             p=false;
+                            pausedclk.restart();
                             break;
                         }
                     }
@@ -225,6 +228,8 @@ void HandlingClass::Start()
                         {
                             p=true;
                             ps=false;
+                            pausedclock+=pausedclk.restart().asSeconds();
+                            pausedclk.restart();
                             break;
                         }
                     }
@@ -333,9 +338,9 @@ void HandlingClass::Start()
             mytime=0;
             play_window.displayclock(mytime);
         }
-        if(p && clk.getElapsedTime().asSeconds()>=mytime+1)
+        if(p && clk.getElapsedTime().asSeconds()-pausedclock>=mytime+1)
            {
-               mytime=clk.getElapsedTime().asSeconds();
+               mytime=clk.getElapsedTime().asSeconds()-pausedclock;
                play_window.displayclock(mytime);
            }
         // Clear screen
