@@ -21,7 +21,7 @@ void Main_Window::setbuttons(int l)
     Lowerlevel.seteverything(1400, (2800/2)-200, 100, 200, Color::White, "", "arrow 2.png");
     Higherlevel.seteverything(1400, (2800/2)+200, 100, 200, Color::White, "", "arrow.png");
     if (!displaylevelfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return ;
     }
     displaylevel.setString(std::to_string(l));
     displaylevel.setFont(displaylevelfont);
@@ -30,7 +30,7 @@ void Main_Window::setbuttons(int l)
     displaylevel.setPosition(2800/2,1400-8);
     displaylevel.setColor(sf::Color::White);
     if (!Levelfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Level.setString("Level");
     Level.setFont(Levelfont);
@@ -46,7 +46,7 @@ void Main_Window::changelevel(int l)
 void Main_Window::settexture()
 {
     if (!MainWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/ss-009.jpg")) {
-        return EXIT_FAILURE;
+        return;
     }
     MainWindowImage.setTexture(MainWindow_Texture);
     MainWindowImage.setScale(Vector2f (1.5f,1.7f));

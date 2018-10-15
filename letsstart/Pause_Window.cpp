@@ -19,7 +19,7 @@ void Pause_Window::setbuttons()
     EXITT.seteverything((1800/2)+100, (2880/2)-200, 100, 200, Color::White, "Exit","");
     CANCELL.seteverything((1800/2)+100, (2880/2)+200, 100, 200, Color::White, "Return","");
     if (!Pauseefont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Pausee.setString("Paused");
     Pausee.setFont(Pauseefont);
@@ -31,7 +31,7 @@ void Pause_Window::setbuttons()
 void Pause_Window::settexture()
 {
     if (!QuitWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/BackgroundSkyFinalLook.jpg")) {
-        return EXIT_FAILURE;
+        return;
     }
     QuitWindowImage.setTexture(QuitWindow_Texture);
     QuitWindowImage.setScale(Vector2f (3.f,2.85f));

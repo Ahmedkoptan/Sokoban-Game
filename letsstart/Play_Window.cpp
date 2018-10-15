@@ -25,7 +25,7 @@ void Play_Window::setbuttons(int movement_counterr, int myclockcounter)
     Restart.seteverything(400, 150, 100, 200, Color::White, "","restart.jpg");
     GoBack.seteverything(600, 150, 100, 200, Color::White, "Back", "");
     if (!movementcounterfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     movement_counter.setString(std::to_string(movement_counterr));
     movement_counter.setFont(movementcounterfont);
@@ -34,7 +34,7 @@ void Play_Window::setbuttons(int movement_counterr, int myclockcounter)
     movement_counter.setPosition(350,850-8);
     movement_counter.setColor(sf::Color::Black);
     if (!myclockfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     myclock.setString(std::to_string(myclockcounter));
     myclock.setFont(myclockfont);
@@ -43,7 +43,7 @@ void Play_Window::setbuttons(int movement_counterr, int myclockcounter)
     myclock.setPosition(350,1000-8);
     myclock.setColor(sf::Color::Black);
     if (!Movesfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Moves.setString("Moves");
     Moves.setFont(Movesfont);
@@ -52,7 +52,7 @@ void Play_Window::setbuttons(int movement_counterr, int myclockcounter)
     Moves.setPosition(150,830-8);
     Moves.setColor(sf::Color::Black);
     if (!Timeefont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Timee.setString("Clock");
     Timee.setFont(Timeefont);
@@ -64,7 +64,7 @@ void Play_Window::setbuttons(int movement_counterr, int myclockcounter)
 void Play_Window::settexture()
 {
     if (!PlayWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/BackgroundSkyFinalLook.jpg")) {
-        return EXIT_FAILURE;
+        return;
     }
     PlayWindowImage.setTexture(PlayWindow_Texture);
     PlayWindowImage.setScale(Vector2f (3.f,2.85f));
@@ -72,25 +72,25 @@ void Play_Window::settexture()
     PlayWindowImage.setPosition(2880/2, 1800/2);
     
     if (!Grass_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/grass.png")) {
-        return EXIT_FAILURE;
+        return;
     }
     GrassImage.setTexture(Grass_Texture);
     GrassImage.setScale(Vector2f (0.4f,0.4f));
     
     if (!Box_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/box.png")) {
-        return EXIT_FAILURE;
+        return;
     }
     BoxImage.setTexture(Box_Texture);
     BoxImage.setScale(Vector2f (0.2f,0.2f));
     
     if (!Tiles_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/brick.png")) {
-        return EXIT_FAILURE;
+        return;
     }
     TilesImage.setTexture(Tiles_Texture);
     TilesImage.setScale(Vector2f (0.34f,0.34f));
     
     if (!Player_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/player_sprite_by_brubee2k.png")) {
-        return EXIT_FAILURE;
+        return;
     }
     PlayerImage.setTexture(Player_Texture);
     PlayerImage.setScale(Vector2f (1.f,1.f));
@@ -359,8 +359,8 @@ bool Play_Window::moveplayer(int di, int dj)
                 map[pi + di + di][pj + dj + dj] = 'B';
                 return true;
             }
-            return false;
         }
+        return false;
     }
 }
 bool Play_Window::checknotwin()

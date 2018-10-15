@@ -23,7 +23,7 @@ void Buttons::seteverything(float posi, float posj, float sizei, float sizej, Co
     mybutton.setPosition(Pj, Pi);
     mybutton.setFillColor(c);
     if (!font.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     mytext.setString(text);
     mytext.setFont(font);
@@ -34,7 +34,7 @@ void Buttons::seteverything(float posi, float posj, float sizei, float sizej, Co
     if(imagename!="")
     {
         if (!Button_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/"+imagename)) {
-            return EXIT_FAILURE;
+            return;
         }
         ButtonImage.setTexture(Button_Texture);
         ButtonImage.setScale(Vector2f (0.2f,0.19f));

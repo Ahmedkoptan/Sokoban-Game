@@ -19,7 +19,7 @@ void Win_window::setbuttons(int movement_counterrr, int myscore)
     Restarttt.seteverything(200, 150, 100, 200, Color::White, "","restart.jpg");
     MainWindow.seteverything(400, 150, 100, 200, Color::White, "Main Window","");
     if (!movementcounterfontt.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     movement_counterr.setString(std::to_string(movement_counterrr));
     movement_counterr.setFont(movementcounterfontt);
@@ -28,7 +28,7 @@ void Win_window::setbuttons(int movement_counterrr, int myscore)
     movement_counterr.setPosition(350,850-8);
     movement_counterr.setColor(sf::Color::White);
     if (!ScoreFont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Score.setString(std::to_string(myscore));
     Score.setFont(ScoreFont);
@@ -37,7 +37,7 @@ void Win_window::setbuttons(int movement_counterrr, int myscore)
     Score.setPosition(350,1000-8);
     Score.setColor(sf::Color::White);
     if (!Movesmadefont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Movesmade.setString("Moves");
     Movesmade.setFont(Movesmadefont);
@@ -46,7 +46,7 @@ void Win_window::setbuttons(int movement_counterrr, int myscore)
     Movesmade.setPosition(150,830-8);
     Movesmade.setColor(sf::Color::White);
     if (!ScoreFont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Scoremade.setString("Score");
     Scoremade.setFont(ScoreFont);
@@ -58,7 +58,7 @@ void Win_window::setbuttons(int movement_counterrr, int myscore)
 void Win_window::settexture()
 {
     if (!WinWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/win.jpg")) {
-        return EXIT_FAILURE;
+        return;
     }
     WinWindowImage.setTexture(WinWindow_Texture);
     WinWindowImage.setScale(Vector2f (3.f,2.4f));

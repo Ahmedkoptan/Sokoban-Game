@@ -19,7 +19,7 @@ void Lose_window::setbuttons(int movement_counterrr)
     Restartttt.seteverything(500, 300, 100, 200, Color::White, "","restart.jpg");
     MainWindoww.seteverything(500, 700, 100, 200, Color::White, "Main Window","");
     if (!movementcounterfontt.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     movement_counterr.setString(std::to_string(movement_counterrr));
     movement_counterr.setFont(movementcounterfontt);
@@ -31,7 +31,7 @@ void Lose_window::setbuttons(int movement_counterrr)
 void Lose_window::settexture()
 {
     if (!LoseWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/ha-ha-you-lose.png")) {
-        return EXIT_FAILURE;
+        return;
     }
     LoseWindowImage.setTexture(LoseWindow_Texture);
     LoseWindowImage.setScale(Vector2f (2.f,1.6f));

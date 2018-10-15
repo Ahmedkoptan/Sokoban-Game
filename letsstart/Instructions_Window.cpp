@@ -20,7 +20,7 @@ void Instructions_Window::setbuttons()
 void Instructions_Window::settexture()
 {
     if (!Instructions_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Instructions_Image.png")) {
-        return EXIT_FAILURE;
+        return;
     }
     InstructionsWindowImage.setTexture(Instructions_Texture);
     InstructionsWindowImage.setScale(Vector2f (1.f,1.f));

@@ -18,7 +18,7 @@ void Quit_Window::setbuttons()
     Exit.seteverything((1800/2)+100, (2880/2)-200, 100, 200, Color::White, "Yes","");
     Cancel.seteverything((1800/2)+100, (2880/2)+200, 100, 200, Color::White, "No","");
     if (!Quitfont.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/Times New Roman.ttf")) {
-        return EXIT_FAILURE;
+        return;
     }
     Quit.setString("Are you sure you want to quit?");
     Quit.setFont(Quitfont);
@@ -30,7 +30,7 @@ void Quit_Window::setbuttons()
 void Quit_Window::settexture()
 {
     if (!QuitWindow_Texture.loadFromFile("/Users/ahmedkoptanmacbook/Imp/AUC/Course content/Fall 2015-Summer 2016/Spring 2016/CS 110/NEW/project/letsstart/BackgroundSkyFinalLook.jpg")) {
-        return EXIT_FAILURE;
+        return;
     }
     QuitWindowImage.setTexture(QuitWindow_Texture);
     QuitWindowImage.setScale(Vector2f (3.f,2.85f));
